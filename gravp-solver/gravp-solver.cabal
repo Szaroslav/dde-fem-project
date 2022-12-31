@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      GaussianQuadrature
       Lib
   other-modules:
       Paths_gravp_solver
