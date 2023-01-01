@@ -21,7 +21,13 @@
     <ClCompile Include="Sources\GaussianQuadrature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\LinearFunction.cpp">
+    <ClCompile Include="Sources\BaseFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Equations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GaussianElimination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,8 +35,17 @@
     <ClInclude Include="Headers\GaussianQuadrature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\LinearFunction.h">
+    <ClInclude Include="Headers\BaseFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Equations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GaussianElimination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>
