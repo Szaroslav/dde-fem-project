@@ -142,13 +142,11 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sources\Equations.cpp" />
-    <ClCompile Include="Sources\GaussianElimination.cpp" />
     <ClCompile Include="Sources\GaussianQuadrature.cpp" />
     <ClCompile Include="Sources\BaseFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Equations.h" />
-    <ClInclude Include="Headers\GaussianElimination.h" />
     <ClInclude Include="Headers\GaussianQuadrature.h" />
     <ClInclude Include="Headers\BaseFunctions.h" />
   </ItemGroup>

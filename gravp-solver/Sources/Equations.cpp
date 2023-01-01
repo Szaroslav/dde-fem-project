@@ -10,7 +10,7 @@ using Eigen::VectorXd;
 SparseMatrix<double> BMatrix(int N) {
 	SparseMatrix<double> B(N - 1, N - 1);
 
-	for (int i = 0; i < N - 1; i++) {
+	for (int i = 0; i < N - 2; i++) {
 		auto dei = [=](double x) { return de(i, N, x) * de(i + 1, N, x); };
 		B.insert(i, i + 1) = inegrateQuad2(xi(i + 1, N), xi(i + 2, N), dei);
 		B.insert(i + 1, i) = inegrateQuad2(xi(i + 1, N), xi(i + 2, N), dei);
