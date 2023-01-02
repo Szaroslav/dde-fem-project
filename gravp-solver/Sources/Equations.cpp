@@ -2,24 +2,27 @@
 #include "../Headers/BaseFunctions.h"
 #include "../Headers/GaussianQuadrature.h"
 #include <cmath>
+#include <iostream>
 
 using std::vector;
-using Eigen::SparseMatrix;
+using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
-SparseMatrix<double> BMatrix(int N) {
-	SparseMatrix<double> B(N - 1, N - 1);
+MatrixXd BMatrix(int N) {
+	MatrixXd B(N - 1, N - 1);
+	for (int i = 0; i < N - 1; i++)
+		for (int j = 0; j < N - 1; j++)
+			B(i, j) = 0;
 
-	for (int i = 0; i < N - 2; i++) {
+	for (int i = 1; i < N - 1; i++) {
 		auto dei = [=](double x) { return de(i, N, x) * de(i + 1, N, x); };
-		B.insert(i, i + 1) = inegrateQuad2(xi(i + 1, N), xi(i + 2, N), dei);
-		B.insert(i + 1, i) = inegrateQuad2(xi(i + 1, N), xi(i + 2, N), dei);
+		B(i - 1, i) = inegrateQuad2(xi(i, N), xi(i + 1, N), dei);
+		B(i, i - 1) = inegrateQuad2(xi(i, N), xi(i + 1, N), dei);
 	}
 
-	for (int i = 0; i < N - 1; i++) {
-		auto de0 = [=](double x) { return de(i, N, x) * de(i, N, x); };
-		auto de1 = [=](double x) { return de(i + 1, N, x) * de(i + 1, N, x); };
-		B.insert(i, i) = inegrateQuad2(xi(i, N), xi(i + 1, N), de0) + inegrateQuad2(xi(i + 1, N), xi(i + 2, N), de1);
+	for (int i = 1; i < N; i++) {
+		auto dei = [=](double x) { return de(i, N, x) * de(i, N, x); };
+		B(i - 1, i - 1) = 2 * inegrateQuad2(xi(i - 1, N), xi(i, N), dei);
 	}
 
 	return B;

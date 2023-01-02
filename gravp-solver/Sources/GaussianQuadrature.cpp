@@ -1,6 +1,6 @@
 #include "../Headers/GaussianQuadrature.h"
 
-double inegrateQuad2(double a, double b, std::function<double(double)> f) {
+double integrateQuad2(double a, double b, std::function<double(double)> f) {
 	const double x1 = -1 / sqrt(3), x2 = 1 / sqrt(3);
 	const double w = 1;
 	const double c1 = (b - a) / 2, c2 = (a + b) / 2;
