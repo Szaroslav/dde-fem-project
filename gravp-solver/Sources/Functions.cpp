@@ -1,6 +1,5 @@
-#include "../Headers/BaseFunctions.h"
+#include "../Headers/Functions.h"
 #include "../Headers/GaussianQuadrature.h"
-
 
 double xi(int i, int N) {
 	return 3.0 * i / N;
@@ -8,7 +7,7 @@ double xi(int i, int N) {
 
 double e(int i, int N, double x) {
 	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
-	const double A = N / 3;
+	const double A = N / 3.0;
 
 	if (x >= x0 && x <= x1)
 		return A * (x - x0);
@@ -17,18 +16,10 @@ double e(int i, int N, double x) {
 	return 0;
 }
 
-/*double integrateE(int i, int N, double a, double b) {
-	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
-	const double A = N / 3;
-
-	if (a >= x0 && b <= x1)
-		return integrateQuad2(a, b, [=](double x) { return  A * (x - x0); });
-}*/
-
 
 double de(int i, int N, double x) {
 	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
-	const double A = N / 3;
+	const double A = N / 3.0;
 
 	if (x >= x0 && x <= x1)
 		return A;
@@ -37,8 +28,14 @@ double de(int i, int N, double x) {
 	return 0;
 }
 
-int rho(double x) {
-	if (x > 1 && x <= 2)
-		return 1;
-	return 0;
+double w(Eigen::VectorXd Wi, int N, double x) {
+	double result = 0;
+	for (int i = 1; i < N; i++)
+		result += Wi(i - 1) * e(i, N, x);
+
+	return result;
+}
+
+double phi(Eigen::VectorXd Wi, int N, double x) {
+	return 5 - x / 3 + w(Wi, N, x);
 }

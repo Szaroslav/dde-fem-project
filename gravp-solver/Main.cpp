@@ -6,6 +6,7 @@
 #include <Eigen/SparseCore>
 #include <Eigen/SparseCholesky>
 #include "./Headers/Equations.h"
+#include "./Headers/Functions.h"
 
 using std::vector;
 using Eigen::SimplicialLDLT;
@@ -18,13 +19,14 @@ int main(int argc, char *argv[]) {
 	
 	MatrixXd B = BMatrix(N);
 	VectorXd L = LMatrix(N);
-	VectorXd w = VectorXd(N - 1);
+	VectorXd Wi = VectorXd(N - 1);
 
-	std::cout << std::setprecision(2) << B << std::endl;
-	std::cout << L << std::endl;
+	/*std::cout << std::setprecision(2) << B << std::endl;
+	std::cout << L << std::endl;*/
 
-	w = B.colPivHouseholderQr().solve(L);
+	Wi = B.colPivHouseholderQr().solve(L);
 
-	std::cout << w << std::endl;
+	/*std::cout << Wi << std::endl;*/
+	std::cout << phi(Wi, N, 1);
 	return 0;
 }

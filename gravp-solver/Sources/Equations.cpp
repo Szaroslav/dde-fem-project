@@ -1,5 +1,5 @@
 ﻿#include "../Headers/Equations.h"
-#include "../Headers/BaseFunctions.h"
+#include "../Headers/Functions.h"
 #include "../Headers/GaussianQuadrature.h"
 #include <cmath>
 
