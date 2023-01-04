@@ -3,7 +3,7 @@
 
 
 double xi(int i, int N) {
-	return 3 * i / N;
+	return 3.0 * i / N;
 }
 
 double e(int i, int N, double x) {
