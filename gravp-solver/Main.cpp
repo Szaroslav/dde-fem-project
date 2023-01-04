@@ -14,7 +14,7 @@ using Eigen::VectorXd;
 using Eigen::ComputationInfo;
 
 int main(int argc, char *argv[]) {
-	const int N = 9;
+	const int N = 4;
 	
 	MatrixXd B = BMatrix(N);
 	VectorXd L = LMatrix(N);

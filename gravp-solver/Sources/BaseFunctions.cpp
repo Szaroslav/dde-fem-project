@@ -17,13 +17,13 @@ double e(int i, int N, double x) {
 	return 0;
 }
 
-double integrateE(int i, int N, double a, double b) {
+/*double integrateE(int i, int N, double a, double b) {
 	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
 	const double A = N / 3;
 
 	if (a >= x0 && b <= x1)
 		return integrateQuad2(a, b, [=](double x) { return  A * (x - x0); });
-}
+}*/
 
 
 double de(int i, int N, double x) {
