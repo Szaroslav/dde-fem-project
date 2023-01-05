@@ -1,5 +1,6 @@
 #include "../Headers/Functions.h"
 #include "../Headers/GaussianQuadrature.h"
+#include <iostream>
 
 double xi(int i, int N) {
 	return 3.0 * i / N;
@@ -30,8 +31,11 @@ double de(int i, int N, double x) {
 
 double w(Eigen::VectorXd Wi, int N, double x) {
 	double result = 0;
-	for (int i = 1; i < N; i++)
+	for (int i = 1; i < N; i++) {
+		std::cout << Wi(i - 1) * e(i, N, x) << " ";
 		result += Wi(i - 1) * e(i, N, x);
+	}
+	std::cout << std::endl;
 
 	return result;
 }

@@ -34,10 +34,13 @@ VectorXd LMatrix(int N) {
 
 	for (int i = 1; i < N; i++) {
 		auto ei	 = [=](double x) { return e(i, N, x); };
-		auto dei = [=](double x) { return de(i, N, x); };
 
 		/*
-		 * Integration of v(x)dx = e_j(x)dx over the interval [1, 2]
+		 * Integral of v'(x)dx over interval [0, 3] is skipped, cause always returns 0
+		 */
+
+		/*
+		 * Integral of v(x)dx = e_j(x)dx over the interval [1, 2]
 		 * ρ(x) = 1 only for x ∈ [1, 2], otherwise ρ(x) = 0
 		 */
 		double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
@@ -47,7 +50,7 @@ VectorXd LMatrix(int N) {
 			iv = 4 * PI * G * (integrateQuad2(x0, x1, ei) + integrateQuad2(x1, x2, ei));
 		}
 
-		L[i - 1] = 2.0 / 3 * integrateQuad2(xi(i - 1, N), xi(i, N), dei);
+		L[i - 1] = iv;
 	}
 
 	return L;
