@@ -24,9 +24,6 @@
     <ClCompile Include="Sources\Functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\GaussianElimination.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\GaussianQuadrature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,10 +35,10 @@
     <ClInclude Include="Headers\Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\GaussianElimination.h">
+    <ClInclude Include="Headers\GaussianQuadrature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\GaussianQuadrature.h">
+    <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

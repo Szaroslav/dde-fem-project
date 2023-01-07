@@ -1,13 +1,13 @@
 #include "../Headers/Functions.h"
-#include "../Headers/GaussianQuadrature.h"
-#include <iostream>
 
-double xi(int i, int N) {
+extern int N;
+
+double xi(int i) {
 	return 3.0 * i / N;
 }
 
-double e(int i, int N, double x) {
-	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
+double e(int i, double x) {
+	const double x0 = xi(i - 1), x1 = xi(i), x2 = xi(i + 1);
 	const double A = N / 3.0;
 
 	if (x >= x0 && x <= x1)
@@ -18,8 +18,8 @@ double e(int i, int N, double x) {
 }
 
 
-double de(int i, int N, double x) {
-	const double x0 = xi(i - 1, N), x1 = xi(i, N), x2 = xi(i + 1, N);
+double de(int i, double x) {
+	const double x0 = xi(i - 1), x1 = xi(i), x2 = xi(i + 1);
 	const double A = N / 3.0;
 
 	if (x >= x0 && x <= x1)
@@ -29,17 +29,14 @@ double de(int i, int N, double x) {
 	return 0;
 }
 
-double w(Eigen::VectorXd Wi, int N, double x) {
+double w(Eigen::VectorXd Wi, double x) {
 	double result = 0;
-	for (int i = 1; i < N; i++) {
-		std::cout << Wi(i - 1) * e(i, N, x) << " ";
-		result += Wi(i - 1) * e(i, N, x);
-	}
-	std::cout << std::endl;
+	for (int i = 1; i < N; i++)
+		result += Wi(i - 1) * e(i, x);
 
 	return result;
 }
 
-double phi(Eigen::VectorXd Wi, int N, double x) {
-	return 5 - x / 3 + w(Wi, N, x);
+double phi(Eigen::VectorXd Wi, double x) {
+	return 5 - x / 3 + w(Wi, x);
 }
